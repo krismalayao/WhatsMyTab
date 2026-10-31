@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "What's My Tab?",
+    "version": "1.0",
+    "description": "Will add more.",
+    "permissions": [
+        "tabs",
+        "sidePanel"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "I don't know my tab..."
+    },
+    "side_panel": {
+        "default_path": "wmt.html"
+    }
+}
