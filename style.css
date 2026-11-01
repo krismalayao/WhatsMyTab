@@ -1,0 +1,381 @@
+/* --- Google Chrome Theme Color Variables with Official Google Palette --- */
+:root[data-theme="light"] {
+  --bg-main: #f8f9fa;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f1f3f4;
+  --border-color: #dadce0;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  
+  /* Official Google Colors for Light Mode */
+  --google-blue: #1a73e8;
+  --google-red: #ea4335;
+  --google-yellow: #fbbc04;
+  --google-green: #34a853;
+  
+  --scrollbar-thumb: #bdc1c6;
+  --star-color: #fbbc04;
+}
+
+:root[data-theme="dark"] {
+  --bg-main: #202124;
+  --bg-surface: #292a2d;
+  --bg-surface-hover: #3c4043;
+  --border-color: #5f6368;
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0a6;
+  
+  /* Official Google Colors for Dark Mode (Brighter variants) */
+  --google-blue: #8ab4f8;
+  --google-red: #f28b82;
+  --google-yellow: #fdd663;
+  --google-green: #81c995;
+  
+  --scrollbar-thumb: #5f6368;
+  --star-color: #fbbc04;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Custom Scrollbars using Google Colors --- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--google-blue); /* Google Blue thumb */
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--google-green); /* Turns Google Green on hover */
+}
+
+/* --- Hero Section --- */
+.hero-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 12px 12px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Placed cleanly at the Top Left with a smooth scale-fade animation */
+.theme-toggle-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--bg-surface-hover);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Smooth fade and pop animation class triggered on click */
+.theme-toggle-btn.animate {
+  transform: scale(0.7);
+  opacity: 0;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--border-color);
+}
+
+.hero-logo {
+  width: auto;
+  max-width: 100%;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.hero-description {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  max-width: 220px;
+}
+
+/* --- Controls Section --- */
+.controls-section {
+  padding: 10px 12px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#search {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 13px;
+  outline: none;
+}
+
+#search:focus {
+  border-color: var(--google-blue);
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+/* Assigning Google Colors to Filter Buttons for a vibrant look */
+.filter-btn {
+  flex: 1;
+  padding: 5px 0;
+  background-color: var(--bg-main);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* "All" button uses Google Blue */
+.filter-btn[data-filter="all"].active,
+.filter-btn[data-filter="all"]:hover {
+  background-color: var(--google-blue);
+  color: #ffffff;
+  border-color: var(--google-blue);
+}
+
+/* "Favorites" button uses Google Yellow/Amber */
+.filter-btn[data-filter="favorites"].active,
+.filter-btn[data-filter="favorites"]:hover {
+  background-color: #f29900;
+  color: #ffffff;
+  border-color: #f29900;
+}
+
+/* "Grouped" button uses Google Green */
+.filter-btn[data-filter="grouped"].active,
+.filter-btn[data-filter="grouped"]:hover {
+  background-color: var(--google-green);
+  color: #ffffff;
+  border-color: var(--google-green);
+}
+
+/* --- Tabs Main Container --- */
+.tabs-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tab-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  gap: 10px;
+}
+
+.tab-card:hover {
+  background-color: var(--bg-surface-hover);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.tab-fav-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.tab-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.tab-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tab-url {
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.fav-flag-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 2px 4px;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.fav-flag-btn.starred,
+.fav-flag-btn:hover {
+  color: var(--google-yellow); /* Google Yellow star */
+}
+
+/* Domain Group Styling with Google Red Header Accent */
+.domain-group {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.domain-header {
+  background-color: var(--bg-surface-hover);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--google-red); /* Google Red accent for group headers */
+  border-bottom: 1px solid var(--border-color);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.domain-items {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: var(--bg-surface);
+}
+
+.domain-items .tab-card {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-main);
+}
+
+/* --- Sticky Bottom Bar: Favorites --- */
+.sticky-favorites {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  padding: 8px 12px;
+}
+
+.favorites-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--google-yellow);
+  margin-bottom: 6px;
+}
+
+.favorites-count {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.favorites-list {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  min-height: 26px;
+  align-items: center;
+  padding-bottom: 6px;
+}
+
+/* Favorite Chips with a subtle Google Green touch on hover */
+.fav-chip {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 3px 8px;
+  cursor: pointer;
+  max-width: 110px;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.fav-chip:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--google-green); /* Google Green border glow on hover */
+}
+
+.fav-chip img {
+  width: 13px;
+  height: 13px;
+  min-width: 13px;
+  min-height: 13px;
+  margin-right: 5px;
+  object-fit: contain;
+}
+
+.fav-chip span {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+}
